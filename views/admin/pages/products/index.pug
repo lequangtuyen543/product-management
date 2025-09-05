@@ -13,25 +13,18 @@ block main
         th(scope="col") Status
         th(scope="col") Actions
     tbody
-      tr
-        th(scope="row") 1
-        td Product A
-        td $10.00
-        td 
-          img(src="https://cdn.dummyjson.com/product-images/beauty/eyeshadow-palette-with-mirror/1.webp", alt="Product A" width="100" height="100")
-        td 
-          a.badge.badge-success Active
-        td 
-          button.btn.btn-sm.btn-primary Edit
-          button.btn.btn-sm.btn-danger Delete
-      tr
-        th(scope="row") 2
-        td Product B
-        td $20.00
-        td 
-          img(src="https://cdn.dummyjson.com/product-images/beauty/eyeshadow-palette-with-mirror/1.webp", alt="Product B" width="auto" height="100")
-        td 
-          a.badge.badge-danger Inactive
-        td 
-          button.btn.btn-sm.btn-primary Edit
-          button.btn.btn-sm.btn-danger Delete
+      each item, index in products
+        tr
+          th(scope="row") #{index + 1}
+          td #{item.title}
+          td $#{item.price}
+          td 
+            img(src=item.thumbnail, alt=item.title width="100" height="100")
+          td 
+            if item.status === 'active'
+              a.badge.badge-success #{item.status}
+            else  
+              a.badge.badge-danger #{item.status}
+          td 
+            button.btn.btn-sm.btn-primary Edit
+            button.btn.btn-sm.btn-danger Delete
