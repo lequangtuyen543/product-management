@@ -3,6 +3,15 @@ extends ../../layouts/default.pug
 block main
   h1 Page Products
 
+  card.mb-3   
+    .card-header Filter and Search
+    .card-body
+      each item in filterStatus
+        button(
+          class=`btn btn-sm ml-1 btn-outline-success ${item.class}`
+          button-status=item.status
+          ) #{item.name}
+
   table.table.table-hover.table-sm 
     thead.thead-dark
       tr
@@ -21,7 +30,7 @@ block main
           td 
             img(src=item.thumbnail, alt=item.title width="100" height="100")
           td 
-            if item.status === 'active'
+            if item.status == 'active'
               a.badge.badge-success #{item.status}
             else  
               a.badge.badge-danger #{item.status}
