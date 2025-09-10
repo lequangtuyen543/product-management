@@ -13,4 +13,19 @@ if (buttonStatus.length > 0) {
     });
   });
 }
-// console.log(buttonStatus);
+
+// Form Search 
+const formSearch = document.querySelector('#form-search');
+if (formSearch) {
+  let url = new URL(window.location.href);
+  formSearch.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const keyword = e.target.elements.keyword.value;
+    if (keyword === '') {
+      url.searchParams.delete('keyword');
+    } else {
+      url.searchParams.set('keyword', keyword);
+    }
+    window.location.href = url.href;
+  });
+}
