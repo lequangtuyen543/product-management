@@ -30,11 +30,17 @@ module.exports.index = async (req, res) => {
   }
 
   let find = {
-    deleted: false
+    deleted: false,
   };
 
   if (req.query.status) {
     find.status = req.query.status;
+  }
+
+  let keyword = '';
+  if (req.query.keyword) {
+    keyword = req.query.keyword;
+    find.title = new RegExp(keyword, 'i');
   }
 
   const products = await Product.find(find);
@@ -44,6 +50,7 @@ module.exports.index = async (req, res) => {
   res.render('admin/pages/products/index', {
     pageTitle: 'Page Products',
     products: products,
-    filterStatus: filterStatus
+    filterStatus: filterStatus,
+    keyword: keyword
   });
 };
