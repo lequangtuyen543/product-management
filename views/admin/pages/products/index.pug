@@ -1,5 +1,6 @@
 extends ../../layouts/default.pug
 include ../../mixins/filterStatus.pug
+include ../../mixins/search.pug
 
 block main
   h1 Page Products
@@ -10,17 +11,7 @@ block main
       .col-6
         +filterStatus(filterStatus)
       .col-6
-        form#form-search
-          .input-group  
-            input(
-              type="text"
-              placeholder="Enter keyword..."
-              name="keyword"
-              class="form-control"
-              value=keyword
-            )
-            .input-group-append
-              button.btn.btn-success(type="submit") Search
+        +search(keyword)
 
   table.table.table-hover.table-sm 
     thead.thead-dark
