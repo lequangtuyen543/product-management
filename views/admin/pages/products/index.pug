@@ -33,11 +33,31 @@ block main
             img(src=item.thumbnail, alt=item.title width="100" height="100")
           td 
             if item.status == 'active'
-              a.badge.badge-success #{item.status}
+              a.badge.badge-success(
+                href="javascript:;"
+                data-status=item.status
+                data-id=item.id
+                button-change-status
+              ) #{item.status}
             else  
-              a.badge.badge-danger #{item.status}
+              a.badge.badge-danger(
+                href="javascript:;"
+                data-status=item.status
+                data-id=item.id
+                button-change-status
+              ) #{item.status}
           td 
             button.btn.btn-sm.btn-primary Edit
             button.btn.btn-sm.btn-danger Delete
-  
+
   +pagination(pagination)
+
+  form(
+    action="" 
+    method="POST"
+    id="form-change-status"
+    data-path=`${prefixAdmin}/products/change-status`
+  )
+
+  script(src="/admin/js/product.js") 
+
