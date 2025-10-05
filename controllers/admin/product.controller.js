@@ -60,7 +60,7 @@ module.exports.changeStatus = async (req, res) => {
   const status = req.params.status;
 
   await Product.updateOne({ _id: id }, { status: status });
-  
+
   req.flash('success', 'Cập nhật trạng thái thành công');
 
   res.redirect(req.get("Referer") || "/");
@@ -91,6 +91,7 @@ module.exports.changeMulti = async (req, res) => {
 
         await Product.updateOne({ _id: id }, { position: position });
       }
+      req.flash('success', `Đã đổi thành công ${ids.length} sản phẩm`);
       break;
     default:
       break;
