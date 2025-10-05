@@ -60,7 +60,9 @@ module.exports.changeStatus = async (req, res) => {
   const status = req.params.status;
 
   await Product.updateOne({ _id: id }, { status: status });
-  // res.redirect("back");
+  
+  req.flash('success', 'Cập nhật trạng thái thành công');
+
   res.redirect(req.get("Referer") || "/");
 };
 
@@ -72,9 +74,11 @@ module.exports.changeMulti = async (req, res) => {
   switch (type) {
     case 'active':
       await Product.updateMany({ _id: { $in: ids } }, { status: 'active' });
+      req.flash('success', `Cập nhật trạng thái thành công ${ids.length} sản phẩm`);
       break;
     case 'inactive':
       await Product.updateMany({ _id: { $in: ids } }, { status: 'inactive' });
+      req.flash('success', `Cập nhật trạng thái thành công ${ids.length} sản phẩm`);
       break;
     case 'delete-all':
       await Product.updateMany({ _id: { $in: ids } }, { deleted: true, deletedAt: new Date() });
@@ -86,7 +90,6 @@ module.exports.changeMulti = async (req, res) => {
 
         await Product.updateOne({ _id: id }, { position: position });
       }
-
       break;
     default:
       break;

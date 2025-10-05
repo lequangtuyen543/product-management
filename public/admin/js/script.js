@@ -1,3 +1,5 @@
+// const { set } = require("mongoose");
+
 const buttonStatus = document.querySelectorAll('[button-status]');
 if (buttonStatus.length > 0) {
   buttonStatus.forEach(button => {
@@ -114,3 +116,19 @@ if (formChangeMulti) {
   });
 }
 // End Form Change Multi 
+
+// Show Alert 
+const showAlert = document.querySelector('[show-alert]');
+if (showAlert) {
+  const time = parseInt(showAlert.getAttribute('data-time'));
+  const closeAlert = showAlert.querySelector('[close-alert]');
+
+  setTimeout(() => {
+    showAlert.classList.add('alert-hidden');
+  }, time);
+
+  closeAlert.addEventListener('click', (e) => {
+    showAlert.classList.add('alert-hidden');
+  });
+}
+// End Show Alert 
