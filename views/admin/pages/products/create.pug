@@ -1,0 +1,50 @@
+extends ../../layouts/default.pug
+
+block main 
+  h1.mb-4 Add New Product
+
+  form(
+    action=`${prefixAdmin}/products/create` 
+    method="POST" 
+    id="form-create-product"
+  )
+    .form-group
+      label(for="title") Title
+      input#title.form-control(type="text" name="title" required)
+
+    .form-group
+      label(for="desc") Description
+      textarea#desc.form-control(name="description" rows="5")
+
+    .form-group
+      label(for="price") Price
+      input#price.form-control(type="number" name="price" value="0" min="0")
+
+    .form-group
+      label(for="discount") Discount (%)
+      input#discount.form-control(type="number" name="discountPercentage" value="0" min="0")
+
+    .form-group
+      label(for="stock") Stock
+      input#stock.form-control(type="number" name="stock" value="0" min="0")      
+
+    .form-group
+      label(for="thumbnail") Thumbnail
+      input#thumbnail.form-control-file(type="text" name="thumbnail")
+
+    .form-group
+      label(for="position") Position
+      input#position.form-control(type="number" name="position" min="1" placeholder="Auto incremented")
+
+    .form-group.form-check.form-check-inline
+      input#statusActive.form-check-input(type="radio" name="status" value="active" checked)
+      label.form-check-label(for="statusActive") Active
+
+    .form-group.form-check.form-check-inline
+      input#statusActive.form-check-input(type="radio" name="status" value="inactive")
+      label.form-check-label(for="statusInActive") InActive
+
+    .form-group
+      button.btn.btn-primary(type="submit") Create Product
+
+  script(src="/admin/js/product.js") 
