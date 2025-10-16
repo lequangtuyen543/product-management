@@ -1,0 +1,36 @@
+extends ../../layouts/default.pug
+
+block main  
+  if(product.title)
+    h1.mb-4 #{product.title}
+
+  if(product.price)
+    .mb-4 Price: <b>#{product.price}</b>
+
+  if(product.discountPercentage)
+    .mb-4 discountPercentage: <b>#{product.discountPercentage} %</b>
+
+  if(product.stock)
+    .mb-4 stock: <b>#{product.stock}</b>
+
+  if(product.thumbnail)
+    .mb-4 
+      img(src=product.thumbnail style="width: 100px")
+
+  if(product.status)
+    .mb-4 status: 
+      if(product.status == "active")
+        span.badge.badge-success active
+      else  
+        span.badge.badge-error inactive
+      
+  if(product.position)
+    .mb-4 position: <b>#{product.position}</b>
+
+  if(product.description)
+    .mb-4 description: <i>#{product.description}</i>
+
+  a.btn.btn-warning(href=`${prefixAdmin}/products/edit/${product.id}`) Edit
+    
+
+  script(src="/admin/js/product.js") 
