@@ -4,6 +4,7 @@ include ../../mixins/search.pug
 include ../../mixins/pagination.pug
 include ../../mixins/form-change-multi.pug
 include ../../mixins/alert.pug
+include ../../mixins/sort.pug
 
 block main
   +alert-success(5000)    
@@ -17,16 +18,16 @@ block main
         +filterStatus(filterStatus)
       .col-6
         +search(keyword)
+  
+  +sort()
 
   card.mb-3   
-    .card-header List Products
-    .card-body
-      .row 
-        .col-8
-          +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
-        .col-4.text-right
-          a.btn.btn-sm.btn-success(href=`${prefixAdmin}/products/create`) + Add New
-
+    .card-header Change Multi and Add New
+    .card-body.row
+      .col-8
+        +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
+      .col-4.text-right
+        a.btn.btn-sm.btn-success(href=`${prefixAdmin}/products/create`) + Add New  
       table.table.table-hover.table-sm(
         checkbox-multi
       )

@@ -1,0 +1,14 @@
+mixin sort()
+  card.mb-3   
+    .card-header Sort
+    .card-body.row(sort)
+      .col-4
+        select(name="sort" class="form-control" sort-select)
+          option(value="position-asc") Position Asc
+          option(value="position-desc") Position Desc
+          option(value="price-asc") Price Asc
+          option(value="price-desc") Price Desc
+          option(value="title-asc") Title Asc
+          option(value="title-desc") Title Desc
+      .col-8.text-right
+        a.btn.btn-sm.btn-danger(sort-clear) Clear

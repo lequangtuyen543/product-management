@@ -8,7 +8,6 @@ const paginationHelper = require('../../helpers/pagination');
 //GET /admin/products
 module.exports.index = async (req, res) => {
   console.log(req.query.status);
-
   const filterStatus = filterStatusHelper(req.query);
 
   let find = {
@@ -20,8 +19,6 @@ module.exports.index = async (req, res) => {
   }
 
   const objectSearch = searchHelper(req.query);
-
-  // console.log(objectSearch);
 
   if (objectSearch.regex) {
     find.title = objectSearch.regex;
@@ -40,10 +37,16 @@ module.exports.index = async (req, res) => {
   );
   //End Pagination
 
+  //Sort
+  let sort = {};
+  if (req.query.sortKey && req.query.sortValue) {
+    sort[req.query.sortKey] = req.query.sortValue;
+  } else {
+    sort.position = 'desc';
+  }
+  //End Sort
 
-  const products = await Product.find(find).sort({ position: 'desc' }).limit(objectPagination.limitItems).skip(objectPagination.skip);
-
-  // console.log(products);
+  const products = await Product.find(find).sort(sort).limit(objectPagination.limitItems).skip(objectPagination.skip);
 
   res.render('admin/pages/products/index', {
     pageTitle: 'Page Products',
