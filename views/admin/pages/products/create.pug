@@ -18,7 +18,11 @@ block main
 
     .form-group
       label(for="desc") Description
-      textarea#desc.form-control(name="description" rows="5")
+      textarea#desc.form-control.textarea-mce(name="description" rows="5")
+
+    //- .form-group
+    //-   label(for="content") Content
+    //-   textarea#content.form-control(name="content" rows="5")
 
     .form-group
       label(for="price") Price
