@@ -159,7 +159,7 @@ module.exports.edit = async (req, res) => {
       product: product
     });
   } catch (error) {
-    res.redirect(`${systemConfig.prefixAdmin}/products`)
+    res.redirect(`${systemConfig.prefixAdmin}/products`);
   }
 };
 
