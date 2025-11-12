@@ -28,7 +28,8 @@ block main
     .mb-4 position: <b>#{product.position}</b>
 
   if(product.description)
-    .mb-4 description: <i>#{product.description}</i>
+    .mb-4 description: 
+      i !{product.description}
 
   a.btn.btn-warning(href=`${prefixAdmin}/products/edit/${product.id}`) Edit
     
