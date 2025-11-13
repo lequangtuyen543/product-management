@@ -1,5 +1,6 @@
 extends ../../layouts/default.pug
 include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
 
 block main 
   +alert-error(3000)
@@ -17,12 +18,15 @@ block main
       input#title.form-control(type="text" name="title" required)
 
     .form-group
+      label(for="product_category_id") Category
+      select#product_category_id.form-control(name="product_category_id") 
+        option(value="") --Select Category--
+        if(category)
+          +select-tree(category)
+
+    .form-group
       label(for="desc") Description
       textarea#desc.form-control.textarea-mce(name="description" rows="5")
-
-    //- .form-group
-    //-   label(for="content") Content
-    //-   textarea#content.form-control(name="content" rows="5")
 
     .form-group
       label(for="price") Price
