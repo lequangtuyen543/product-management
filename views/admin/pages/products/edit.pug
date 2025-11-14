@@ -24,9 +24,6 @@ block main
         option(value="") --Select Category--
         if(category)
           +select-tree(category, 1, product.product_category_id)
-    
-    //- div #{category}
-    //- div #{product.product_category_id}
 
     .form-group
       label(for="desc") Description
