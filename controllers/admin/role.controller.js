@@ -9,7 +9,7 @@ module.exports.index = async (req, res) => {
   }
 
   const records = await Role.find(find);
-  
+
   res.render('admin/pages/roles/index', {
     pageTitle: 'Page Roles',
     records: records
@@ -31,4 +31,39 @@ module.exports.createPost = async (req, res) => {
   await record.save();
 
   res.redirect(`${systemConfig.prefixAdmin}/roles`);
+};
+
+//[GET] /admin/roles/edit/:id
+module.exports.edit = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    let find = {
+      _id: id,
+      deleted: false
+    };
+
+    const data = await Role.findOne(find);
+    res.render('admin/pages/roles/edit', {
+      pageTitle: 'Edit Roles',
+      data: data
+    });
+  } catch (error) {
+    res.redirect(`${systemConfig.prefixAdmin}/roles`);
+  }
+};
+
+//[PATCH] /admin/roles/edit/:id
+module.exports.editPatch = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    await Role.updateOne({ _id: id }, req.body);
+
+    req.flash("success", 'Update role successfully');
+  } catch (error) {
+    eq.flash("error", 'Update role error');
+  }
+
+  res.redirect(req.get("Referer") || "/");
 };
