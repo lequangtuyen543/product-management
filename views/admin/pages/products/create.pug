@@ -5,7 +5,7 @@ include ../../mixins/select-tree.pug
 block main 
   +alert-error(3000)
 
-  h1.mb-4 Add New Product
+  h1.mb-4 Create Product
 
   form(
     action=`${prefixAdmin}/products/create` 
@@ -58,6 +58,6 @@ block main
       label.form-check-label(for="statusInActive") InActive
 
     .form-group
-      button.btn.btn-primary(type="submit") Create Product
+      button.btn.btn-primary(type="submit") Submit
 
   script(src="/admin/js/product.js") 
