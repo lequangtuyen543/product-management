@@ -1,6 +1,9 @@
 extends ../../layouts/default.pug
+include ../../mixins/alert.pug
 
 block main
+  +alert-success(5000)
+
   h1.mb-4 Page Roles
 
   .card.mb-3  
@@ -24,7 +27,7 @@ block main
               tr
                 th(scope="row") #{index + 1}
                 td #{item.title}
-                td #{item.description}
+                td !{item.description}
                 td 
                   a.btn.btn-sm.btn-secondary(href=`${prefixAdmin}/roles/detail/${item.id}`) Detail
                   a.btn.btn-sm.btn-warning(href=`${prefixAdmin}/roles/edit/${item.id}`) Edit

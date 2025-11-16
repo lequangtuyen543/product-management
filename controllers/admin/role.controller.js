@@ -44,6 +44,7 @@ module.exports.edit = async (req, res) => {
     };
 
     const data = await Role.findOne(find);
+
     res.render('admin/pages/roles/edit', {
       pageTitle: 'Edit Roles',
       data: data
@@ -64,6 +65,33 @@ module.exports.editPatch = async (req, res) => {
   } catch (error) {
     eq.flash("error", 'Update role error');
   }
+
+  res.redirect(req.get("Referer") || "/");
+};
+
+//[GET] /admin/roles/permissions
+module.exports.permissions = async (req, res) => {
+  let find = {
+    deleted: false
+  };
+
+  const records = await Role.find(find);
+
+  res.render('admin/pages/roles/permissions', {
+    pageTitle: 'Page Permissions',
+    records: records
+  });
+};
+
+//[PATCH] /admin/roles/permissions
+module.exports.permissionsPatch = async (req, res) => {
+  const permissions = JSON.parse(req.body.permissions);
+
+  for (const item of permissions) {
+    await Role.updateOne({ _id: item.id }, { permissions: item.permissions })
+  }
+
+  req.flash('success', 'Update permissions success');
 
   res.redirect(req.get("Referer") || "/");
 };

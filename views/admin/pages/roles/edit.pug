@@ -17,7 +17,7 @@ block main
 
     .form-group
       label(for="desc") Description
-      textarea#desc.form-control.textarea-mce(name="description" rows="5") #{data.description}
+      textarea#desc.form-control.textarea-mce(name="description" rows="5") !{data.description}
 
     .form-group
       button.btn.btn-primary(type="submit") Submit
