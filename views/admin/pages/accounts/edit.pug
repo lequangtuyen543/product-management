@@ -1,0 +1,61 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
+
+block main 
+  +alert-success(3000)
+  +alert-error(3000)
+
+  h1.mb-4 Edit Account
+
+  if(roles)
+    form(
+      action=`${prefixAdmin}/accounts/edit/${data.id}?_method=PATCH` 
+      method="POST" 
+      enctype="multipart/form-data"
+    )
+      .form-group
+        label(for="fullName") Full Name *
+        input#fullName.form-control(type="text" name="fullName" required value=data.fullName)
+
+      .form-group
+        label(for="email") Email *
+        input#email.form-control(type="email" name="email" required value=data.email)
+
+      .form-group
+        label(for="password") Password
+        input#password.form-control(type="password" name="password")
+
+      .form-group
+        label(for="phone") Phone
+        input#password.form-control(type="number" name="phone" value=data.phone) 
+
+      .form-group(upload-image)
+        label(for="avatar") Avatar
+        input#avatar.form-control-file(type="file" name="avatar" accept="image/*" upload-image-input)
+        img.image-preview(src=data.avatar upload-image-preview)
+
+      .form-group
+        label(for="role_id") Role
+        select#role_id.form-control(name="role_id")
+          option(disable) -- Select --
+          each item in roles
+            option(value=item.id selected=(item.id == data.role_id ? true : false)) #{item.title}
+
+      .form-group.form-check.form-check-inline
+        input#statusActive.form-check-input(type="radio" name="status" value="active" checked=(data.status == 'active' ? true : false))
+        label.form-check-label(for="statusActive") Active
+
+      .form-group.form-check.form-check-inline
+        input#statusActive.form-check-input(type="radio" name="status" value="inactive" checked=(data.status == 'inactive' ? true : false))
+        label.form-check-label(for="statusInActive") InActive
+
+      .form-group
+        button.btn.btn-primary(type="submit") Submit
+
+  else  
+    p Please create Roles before update Accounts 
+    p   
+      a.btn.btn-secondary(href=`${prefixAdmin}/roles/create`) Create Roles
+
+  script(src="/admin/js/data.js") 

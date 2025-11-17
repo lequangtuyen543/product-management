@@ -18,7 +18,7 @@ block main
 
     .form-group
       label(for="email") Email *
-      input#email.form-control(type="text" name="email" required)
+      input#email.form-control(type="email" name="email" required)
 
     .form-group
       label(for="password") Password *
@@ -34,7 +34,7 @@ block main
       img.image-preview(src="" upload-image-preview)
 
     .form-group
-      label(for="role_id") Position
+      label(for="role_id") Role
       select#role_id.form-control(name="role_id")
         option(disable) -- Select --
         each item in roles
