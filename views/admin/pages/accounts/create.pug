@@ -1,0 +1,54 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
+
+block main 
+  +alert-error(3000)
+
+  h1.mb-4 Create Account
+
+  form(
+    action=`${prefixAdmin}/accounts/create` 
+    method="POST"
+    enctype="multipart/form-data"
+  )
+    .form-group
+      label(for="fullName") Full Name *
+      input#fullName.form-control(type="text" name="fullName" required)
+
+    .form-group
+      label(for="email") Email *
+      input#email.form-control(type="text" name="email" required)
+
+    .form-group
+      label(for="password") Password *
+      input#password.form-control(type="password" name="password" required)
+
+    .form-group
+      label(for="phone") Phone
+      input#phone.form-control(type="number" name="phone") 
+
+    .form-group(upload-image)
+      label(for="avatar") Avatar
+      input#avatar.form-control-file(type="file" name="avatar" accept="image/*" upload-image-input)
+      img.image-preview(src="" upload-image-preview)
+
+    .form-group
+      label(for="role_id") Position
+      select#role_id.form-control(name="role_id")
+        option(disable) -- Select --
+        each item in roles
+          option(value=item.id) #{item.title}
+
+    .form-group.form-check.form-check-inline
+      input#statusActive.form-check-input(type="radio" name="status" value="active" checked)
+      label.form-check-label(for="statusActive") Active
+
+    .form-group.form-check.form-check-inline
+      input#statusActive.form-check-input(type="radio" name="status" value="inactive")
+      label.form-check-label(for="statusInActive") InActive
+
+    .form-group
+      button.btn.btn-primary(type="submit") Submit
+
+  script(src="/admin/js/product.js") 
