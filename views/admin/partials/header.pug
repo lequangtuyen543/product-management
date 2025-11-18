@@ -1,14 +1,10 @@
 header.header 
-  .container  
+  .container-fluid
     .row.align-items-center 
       .col-3 
         .inner-logo 
           a(href="/admin/dashboard") ADMIN
 
       .col-9 
-      //-   .inner-menu 
-      //-     ul 
-      //-       li  
-      //-         a(href="/") Page Home     
-      //-       li  
-      //-         a(href="/products") Page Products   
+        .text-right 
+          a.btn.btn-danger.btn-sm(href=`${prefixAdmin}/auth/logout`) Logout  
