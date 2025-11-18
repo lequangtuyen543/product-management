@@ -1,0 +1,26 @@
+extends ../../layouts/auth.pug
+include ../../mixins/alert.pug
+
+block main
+  +alert-success(5000)    
+  +alert-error(5000)    
+
+  .container.my-5  
+    .row.justify-content-center
+      .col-8
+        h1.text-center Login
+        form(
+          action=`${prefixAdmin}/auth/login`
+          method='POST'
+        )
+          .form-group
+            label(for="email") Email
+            input#email.form-control(type="email" name="email" required)
+
+          .form-group
+            label(for="password") Password
+            input#password.form-control(type="password" name="password" required)
+
+          .form-group
+            button.btn.btn-primary(type="submit") Submit
+
