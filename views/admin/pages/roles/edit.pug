@@ -2,24 +2,25 @@ extends ../../layouts/default.pug
 include ../../mixins/alert.pug
 
 block main 
-  +alert-success(3000)
-  +alert-error(3000)
+  if(role.permissions.includes('roles_edit'))
+    +alert-success(3000)
+    +alert-error(3000)
 
-  h1.mb-4 Edit Role
+    h1.mb-4 Edit Role
 
-  form(
-    action=`${prefixAdmin}/roles/edit/${data.id}?_method=PATCH` 
-    method="POST" 
-  )
-    .form-group
-      label(for="title") Title
-      input#title.form-control(type="text" name="title" required value=data.title)
+    form(
+      action=`${prefixAdmin}/roles/edit/${data.id}?_method=PATCH` 
+      method="POST" 
+    )
+      .form-group
+        label(for="title") Title
+        input#title.form-control(type="text" name="title" required value=data.title)
 
-    .form-group
-      label(for="desc") Description
-      textarea#desc.form-control.textarea-mce(name="description" rows="5") !{data.description}
+      .form-group
+        label(for="desc") Description
+        textarea#desc.form-control.textarea-mce(name="description" rows="5") !{data.description}
 
-    .form-group
-      button.btn.btn-primary(type="submit") Submit
+      .form-group
+        button.btn.btn-primary(type="submit") Submit
 
-  script(src="/admin/js/product.js") 
+    script(src="/admin/js/product.js") 

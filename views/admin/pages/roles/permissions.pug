@@ -2,112 +2,137 @@ extends ../../layouts/default.pug
 include ../../mixins/alert.pug
 
 block main
-  +alert-success(5000)
+  if(role.permissions.includes('roles_permissions'))
+    +alert-success(5000)
 
-  h1.mb-4 Page Permissions
+    h1.mb-4 Page Permissions
 
-  if(records)
-    div(data-records=records)
+    if(records)
+      div(data-records=records)
 
-    div.text-right 
-      button.btn.btn-primary.mb-3(type=submit button-submit) Update 
+      div.text-right 
+        button.btn.btn-primary.mb-3(type=submit button-submit) Update 
 
-    table.table.table-hover.table-sm(table-permissions)
-      thead 
-        tr 
-          th Feature 
-            each item in records
-              th.text-center #{item.title}
-      tbody 
-        tr.d-none(data-name='id') 
-          td
-          each item in records 
-            td.text-center 
-              input(type='text' value=item.id)
-        //- Products Category 
-        tr 
-          td(colspan="4") 
-            b Product Category
-        tr(data-name='products-category_view')
-          td View 
-          each item in records 
-            td.text-center 
-              input(type='checkbox')
-        tr(data-name='products-category_create')
-          td Create 
-          each item in records 
-            td.text-center 
-              input(type='checkbox')
-        tr(data-name='products-category_edit')
-          td Edit 
-          each item in records 
-            td.text-center 
-              input(type='checkbox')
-        tr(data-name='products-category_delete')
-          td Delete 
-          each item in records 
-            td.text-center 
-              input(type='checkbox')
-        //- Products List 
-        tr 
-          td(colspan="4") 
-            b Product List
-        tr(data-name='products_view')
-          td View 
-          each item in records 
-            td.text-center 
-              input(type='checkbox')
-        tr(data-name='products_create')
-          td Create 
-          each item in records 
-            td.text-center 
-              input(type='checkbox')
-        tr(data-name='products_edit')
-          td Edit 
-          each item in records 
-            td.text-center 
-              input(type='checkbox')
-        tr(data-name='products_delete')
-          td Delete 
-          each item in records 
-            td.text-center 
-              input(type='checkbox')
-        //- Roles
-        tr 
-          td(colspan="4") 
-            b Roles
-        tr(data-name='roles_view')
-          td View 
-          each item in records 
-            td.text-center 
-              input(type='checkbox')
-        tr(data-name='roles_create')
-          td Create 
-          each item in records 
-            td.text-center 
-              input(type='checkbox')
-        tr(data-name='roles_edit')
-          td Edit 
-          each item in records 
-            td.text-center 
-              input(type='checkbox')
-        tr(data-name='roles_delete')
-          td Delete 
-          each item in records 
-            td.text-center 
-              input(type='checkbox')
-        tr(data-name='roles_permissions')
-          td Permissions 
-          each item in records 
-            td.text-center 
-              input(type='checkbox')
+      table.table.table-hover.table-sm(table-permissions)
+        thead 
+          tr 
+            th Feature 
+              each item in records
+                th.text-center #{item.title}
+        tbody 
+          tr.d-none(data-name='id') 
+            td
+            each item in records 
+              td.text-center 
+                input(type='text' value=item.id)
+          //- Products Category 
+          tr 
+            td(colspan="4") 
+              b Product Category
+          tr(data-name='products-category_view')
+            td View 
+            each item in records 
+              td.text-center 
+                input(type='checkbox')
+          tr(data-name='products-category_create')
+            td Create 
+            each item in records 
+              td.text-center 
+                input(type='checkbox')
+          tr(data-name='products-category_edit')
+            td Edit 
+            each item in records 
+              td.text-center 
+                input(type='checkbox')
+          tr(data-name='products-category_delete')
+            td Delete 
+            each item in records 
+              td.text-center 
+                input(type='checkbox')
+          //- Products List 
+          tr 
+            td(colspan="4") 
+              b Product List
+          tr(data-name='products_view')
+            td View 
+            each item in records 
+              td.text-center 
+                input(type='checkbox')
+          tr(data-name='products_create')
+            td Create 
+            each item in records 
+              td.text-center 
+                input(type='checkbox')
+          tr(data-name='products_edit')
+            td Edit 
+            each item in records 
+              td.text-center 
+                input(type='checkbox')
+          tr(data-name='products_delete')
+            td Delete 
+            each item in records 
+              td.text-center 
+                input(type='checkbox')
+          //- Roles
+          tr 
+            td(colspan="4") 
+              b Roles
+          tr(data-name='roles_view')
+            td View 
+            each item in records 
+              td.text-center 
+                input(type='checkbox')
+          tr(data-name='roles_create')
+            td Create 
+            each item in records 
+              td.text-center 
+                input(type='checkbox')
+          tr(data-name='roles_edit')
+            td Edit 
+            each item in records 
+              td.text-center 
+                input(type='checkbox')
+          tr(data-name='roles_delete')
+            td Delete 
+            each item in records 
+              td.text-center 
+                input(type='checkbox')
+          tr(data-name='roles_permissions')
+            td Permissions 
+            each item in records 
+              td.text-center 
+                input(type='checkbox')
+          //- Accounts
+          tr 
+            td(colspan="4") 
+              b Accounts
+          tr(data-name='accounts_view')
+            td View 
+            each item in records 
+              td.text-center 
+                input(type='checkbox')
+          tr(data-name='accounts_create')
+            td Create 
+            each item in records 
+              td.text-center 
+                input(type='checkbox')
+          tr(data-name='accounts_edit')
+            td Edit 
+            each item in records 
+              td.text-center 
+                input(type='checkbox')
+          tr(data-name='accounts_delete')
+            td Delete 
+            each item in records 
+              td.text-center 
+                input(type='checkbox')
 
-  form.d-none(
-    action=`${prefixAdmin}/roles/permissions?_method=PATCH` 
-    method="POST" 
-    id="form-change-permissions"
-  )
-    .form-group
-      input.form-control(type="text" name="permissions" required)
+    form.d-none(
+      action=`${prefixAdmin}/roles/permissions?_method=PATCH` 
+      method="POST" 
+      id="form-change-permissions"
+    )
+      .form-group
+        input.form-control(type="text" name="permissions" required)
 
-  script(src="/admin/js/roles.js") 
+    script(src="/admin/js/roles.js") 

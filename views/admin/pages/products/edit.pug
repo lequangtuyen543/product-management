@@ -3,62 +3,63 @@ include ../../mixins/alert.pug
 include ../../mixins/select-tree.pug
 
 block main 
-  +alert-success(3000)
-  +alert-error(3000)
+  if(role.permissions.includes('products_edit'))
+    +alert-success(3000)
+    +alert-error(3000)
 
-  h1.mb-4 Edit Product
+    h1.mb-4 Edit Product
 
-  form(
-    action=`${prefixAdmin}/products/edit/${product.id}?_method=PATCH` 
-    method="POST" 
-    id="form-edit-product"
-    enctype="multipart/form-data"
-  )
-    .form-group
-      label(for="title") Title
-      input#title.form-control(type="text" name="title" required value=product.title)
-      
-    .form-group
-      label(for="product_category_id") Category
-      select#product_category_id.form-control(name="product_category_id") 
-        option(value="") --Select Category--
-        if(category)
-          +select-tree(category, 1, product.product_category_id)
+    form(
+      action=`${prefixAdmin}/products/edit/${product.id}?_method=PATCH` 
+      method="POST" 
+      id="form-edit-product"
+      enctype="multipart/form-data"
+    )
+      .form-group
+        label(for="title") Title
+        input#title.form-control(type="text" name="title" required value=product.title)
+        
+      .form-group
+        label(for="product_category_id") Category
+        select#product_category_id.form-control(name="product_category_id") 
+          option(value="") --Select Category--
+          if(category)
+            +select-tree(category, 1, product.product_category_id)
 
-    .form-group
-      label(for="desc") Description
-      textarea#desc.form-control.textarea-mce(name="description" rows="5") #{product.description}
+      .form-group
+        label(for="desc") Description
+        textarea#desc.form-control.textarea-mce(name="description" rows="5") #{product.description}
 
-    .form-group
-      label(for="price") Price
-      input#price.form-control(type="number" name="price" value=product.price min="0")
+      .form-group
+        label(for="price") Price
+        input#price.form-control(type="number" name="price" value=product.price min="0")
 
-    .form-group
-      label(for="discount") Discount (%)
-      input#discount.form-control(type="number" name="discountPercentage" value=product.discountPercentage min="0")
+      .form-group
+        label(for="discount") Discount (%)
+        input#discount.form-control(type="number" name="discountPercentage" value=product.discountPercentage min="0")
 
-    .form-group
-      label(for="stock") Stock
-      input#stock.form-control(type="number" name="stock" value=product.stock min="0")      
+      .form-group
+        label(for="stock") Stock
+        input#stock.form-control(type="number" name="stock" value=product.stock min="0")      
 
-    .form-group(upload-image)
-      label(for="thumbnail") Thumbnail
-      input#thumbnail.form-control-file(type="file" name="thumbnail" accept="image/*" upload-image-input)
-      img.image-preview(src=product.thumbnail upload-image-preview)
+      .form-group(upload-image)
+        label(for="thumbnail") Thumbnail
+        input#thumbnail.form-control-file(type="file" name="thumbnail" accept="image/*" upload-image-input)
+        img.image-preview(src=product.thumbnail upload-image-preview)
 
-    .form-group
-      label(for="position") Position
-      input#position.form-control(type="number" name="position" min="1" placeholder="Auto incremented" value=product.position)
+      .form-group
+        label(for="position") Position
+        input#position.form-control(type="number" name="position" min="1" placeholder="Auto incremented" value=product.position)
 
-    .form-group.form-check.form-check-inline
-      input#statusActive.form-check-input(type="radio" name="status" value="active" checked=(product.status == 'active' ? true : false))
-      label.form-check-label(for="statusActive") Active
+      .form-group.form-check.form-check-inline
+        input#statusActive.form-check-input(type="radio" name="status" value="active" checked=(product.status == 'active' ? true : false))
+        label.form-check-label(for="statusActive") Active
 
-    .form-group.form-check.form-check-inline
-      input#statusActive.form-check-input(type="radio" name="status" value="inactive" checked=(product.status == 'inactive' ? true : false))
-      label.form-check-label(for="statusInActive") InActive
+      .form-group.form-check.form-check-inline
+        input#statusActive.form-check-input(type="radio" name="status" value="inactive" checked=(product.status == 'inactive' ? true : false))
+        label.form-check-label(for="statusInActive") InActive
 
-    .form-group
-      button.btn.btn-primary(type="submit") Submit
+      .form-group
+        button.btn.btn-primary(type="submit") Submit
 
-  script(src="/admin/js/product.js") 
+    script(src="/admin/js/product.js") 

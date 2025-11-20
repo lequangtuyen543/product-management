@@ -3,48 +3,49 @@ include ../../mixins/alert.pug
 include ../../mixins/select-tree.pug
 
 block main 
-  +alert-error(3000)
+  if(role.permissions.includes('products-category_edit'))
+    +alert-error(3000)
 
-  h1.mb-4 Edit Category
+    h1.mb-4 Edit Category
 
-  form(
-    action=`${prefixAdmin}/products-category/edit/${data.id}?_method=PATCH` 
-    method="POST" 
-    enctype="multipart/form-data"
-  )
-    .form-group
-      label(for="title") Title
-      input#title.form-control(type="text" name="title" required value=data.title)
+    form(
+      action=`${prefixAdmin}/products-category/edit/${data.id}?_method=PATCH` 
+      method="POST" 
+      enctype="multipart/form-data"
+    )
+      .form-group
+        label(for="title") Title
+        input#title.form-control(type="text" name="title" required value=data.title)
 
-    .form-group
-      label(for="parent_id") Parent Id
-      select#parent_id.form-control(name="parent_id") 
-        option(value="") --Select Parent Category--
-        if(records)
-          +select-tree(records, 1, data.parent_id)
+      .form-group
+        label(for="parent_id") Parent Id
+        select#parent_id.form-control(name="parent_id") 
+          option(value="") --Select Parent Category--
+          if(records)
+            +select-tree(records, 1, data.parent_id)
 
-    .form-group
-      label(for="desc") Description
-      textarea#desc.form-control.textarea-mce(name="description" rows="5") !{data.description} 
+      .form-group
+        label(for="desc") Description
+        textarea#desc.form-control.textarea-mce(name="description" rows="5") !{data.description} 
 
-    .form-group(upload-image)
-      label(for="thumbnail") Thumbnail
-      input#thumbnail.form-control-file(type="file" name="thumbnail" accept="image/*" upload-image-input)
-      img.image-preview(src=data.thumbnail upload-image-preview)
+      .form-group(upload-image)
+        label(for="thumbnail") Thumbnail
+        input#thumbnail.form-control-file(type="file" name="thumbnail" accept="image/*" upload-image-input)
+        img.image-preview(src=data.thumbnail upload-image-preview)
 
-    .form-group
-      label(for="position") Position
-      input#position.form-control(type="number" name="position" min="1" placeholder="Auto incremented" value=data.position)
+      .form-group
+        label(for="position") Position
+        input#position.form-control(type="number" name="position" min="1" placeholder="Auto incremented" value=data.position)
 
-    .form-group.form-check.form-check-inline
-      input#statusActive.form-check-input(type="radio" name="status" value="active" checked=(data.status == 'active' ? true : false))
-      label.form-check-label(for="statusActive") Active
+      .form-group.form-check.form-check-inline
+        input#statusActive.form-check-input(type="radio" name="status" value="active" checked=(data.status == 'active' ? true : false))
+        label.form-check-label(for="statusActive") Active
 
-    .form-group.form-check.form-check-inline
-      input#statusActive.form-check-input(type="radio" name="status" value="inactive" checked=(data.status == 'inactive' ? true : false))
-      label.form-check-label(for="statusInActive") InActive
+      .form-group.form-check.form-check-inline
+        input#statusActive.form-check-input(type="radio" name="status" value="inactive" checked=(data.status == 'inactive' ? true : false))
+        label.form-check-label(for="statusInActive") InActive
 
-    .form-group
-      button.btn.btn-primary(type="submit") Submit
+      .form-group
+        button.btn.btn-primary(type="submit") Submit
 
-  script(src="/admin/js/product-category.js") 
+    script(src="/admin/js/product-category.js") 

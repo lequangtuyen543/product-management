@@ -2,39 +2,43 @@ extends ../../layouts/default.pug
 include ../../mixins/alert.pug
 
 block main
-  +alert-success(5000)
+  if(role.permissions.includes('roles_view'))
+    +alert-success(5000)
 
-  h1.mb-4 Page Roles
+    h1.mb-4 Page Roles
 
-  .card.mb-3  
-    .card-header List 
-    .card-body 
-      .row 
-        .col-8 
-        .col-4 
-          a.btn.btn-outline-success(href=`${prefixAdmin}/roles/create`) + Create
-      
-      table.table.table-hover.table-sm
-        thead.thead-dark
-          tr
-            th(scope="col") #
-            th(scope="col") Name
-            th(scope="col") Description
-            th(scope="col") Actions
-        tbody
-          if(records.length > 0)
-            each item, index in records
-              tr
-                th(scope="row") #{index + 1}
-                td #{item.title}
-                td !{item.description}
-                td 
-                  a.btn.btn-sm.btn-secondary(href=`${prefixAdmin}/roles/detail/${item.id}`) Detail
-                  a.btn.btn-sm.btn-warning(href=`${prefixAdmin}/roles/edit/${item.id}`) Edit
-                  button.btn.btn-sm.btn-danger(
-                    data-id=item.id
-                    button-delete
-                  ) Delete
-          else  
-            tr 
-              td.text-center(colspan='4') No roles
+    .card.mb-3  
+      .card-header List 
+      .card-body 
+        .row 
+          .col-8 
+          .col-4 
+            if(role.permissions.includes('roles_create'))
+              a.btn.btn-outline-success(href=`${prefixAdmin}/roles/create`) + Create
+        
+        table.table.table-hover.table-sm
+          thead.thead-dark
+            tr
+              th(scope="col") #
+              th(scope="col") Name
+              th(scope="col") Description
+              th(scope="col") Actions
+          tbody
+            if(records.length > 0)
+              each item, index in records
+                tr
+                  th(scope="row") #{index + 1}
+                  td #{item.title}
+                  td !{item.description}
+                  td 
+                    a.btn.btn-sm.btn-secondary(href=`${prefixAdmin}/roles/detail/${item.id}`) Detail
+                    if(role.permissions.includes('roles_edit'))
+                      a.btn.btn-sm.btn-warning(href=`${prefixAdmin}/roles/edit/${item.id}`) Edit
+                    if(role.permissions.includes('roles_delete'))
+                      button.btn.btn-sm.btn-danger(
+                        data-id=item.id
+                        button-delete
+                      ) Delete
+            else  
+              tr 
+                td.text-center(colspan='4') No roles
