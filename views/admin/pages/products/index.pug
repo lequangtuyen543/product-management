@@ -5,6 +5,7 @@ include ../../mixins/pagination.pug
 include ../../mixins/form-change-multi.pug
 include ../../mixins/alert.pug
 include ../../mixins/sort.pug
+include ../../mixins/moment.pug
 
 block main
   if(role.permissions.includes('products_view'))
@@ -28,7 +29,7 @@ block main
         .col-8
           if(role.permissions.includes('products_edit'))
             +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
-        .col-4.text-
+        .col-4.text-right
           if(role.permissions.includes('products_edit'))
             a.btn.btn-sm.btn-success(href=`${prefixAdmin}/products/create`) + Create
           
@@ -45,6 +46,7 @@ block main
               th(scope="col") Position
               th(scope="col") Image
               th(scope="col") Status
+              th(scope="col") Create by
               th(scope="col") Actions
           tbody
             each item, index in products
@@ -85,9 +87,13 @@ block main
                         button-change-status
                       ) #{item.status}
                 td 
+                  p #{item.account_fullName}
+                  p   
+                    +formatDate(item.createdBy.createdAt)            
+                td 
                   a.btn.btn-sm.btn-secondary(href=`${prefixAdmin}/products/detail/${item.id}`) Detail
                   if(role.permissions.includes('products_edit'))
-                    .btn.btn-sm.btn-warning(href=`${prefixAdmin}/products/edit/${item.id}`) 
+                    a.btn.btn-sm.btn-warning(href=`${prefixAdmin}/products/edit/${item.id}`) Edit
                   if(role.permissions.includes('products_delete'))
                     button.btn.btn-sm.btn-danger(
                       data-id=item.id
