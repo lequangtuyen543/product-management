@@ -84,8 +84,6 @@ module.exports.editPatch = async (req, res) => {
 
   req.body.position = parseInt(req.body.position);
 
-
-
   await ProductCategory.updateOne({ _id: id }, req.body);
 
   res.redirect(req.get('Referer') || '/');

@@ -1,0 +1,30 @@
+extends ../../layouts/default.pug
+
+block main
+  h1 Page My Account
+
+  if(user.avatar)
+    img.mb-3(src=user.avatar width='150px')
+  else 
+    img.mb-3(src='/admin/images/avatar.png' width='150px')
+  
+  if(user.fullName)
+    p fullName: 
+      b #{user.fullName}
+
+  if(user.email)
+    p email: 
+      b #{user.email}
+
+  if(user.phone)
+    p phone: 
+      b #{user.phone}
+
+  p status: 
+    b #{user.status === 'active' ? 'active' : 'inactive'}
+
+  if(role.title)
+    p role: 
+      b #{role.title}
+
+  a.btn.btn-primary(href=`${prefixAdmin}/my-account/edit`) Edit info

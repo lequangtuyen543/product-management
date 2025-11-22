@@ -1,0 +1,39 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+block main 
+  +alert-success(3000)
+  +alert-error(3000)
+
+  h1.mb-4 Edit My Account
+
+  form(
+    action=`${prefixAdmin}/my-account/edit?_method=PATCH` 
+    method="POST" 
+    enctype="multipart/form-data"
+  )
+    .form-group
+      label(for="fullName") fullName *
+      input#fullName.form-control(type="text" name="fullName" required value=user.fullName)
+
+    .form-group
+      label(for="email") email *
+      input#email.form-control(type="text" name="email" required value=user.email)
+
+    .form-group
+      label(for="password") password
+      input#password.form-control(type="text" name="password")
+
+    .form-group
+      label(for="phone") phone
+      input#phone.form-control(type="number" name="phone" value=user.phone min="0")    
+
+    .form-group(upload-image)
+      label(for="avatar") avatar
+      input#thumbnail.form-control-file(type="file" name="avatar" accept="image/*" upload-image-input)
+      img.image-preview(src=user.avatar upload-image-preview)
+
+    .form-group
+      button.btn.btn-primary(type="submit") Submit
+
+  script(src="/admin/js/product.js") 
