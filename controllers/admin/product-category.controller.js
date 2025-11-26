@@ -38,6 +38,11 @@ module.exports.create = async (req, res) => {
 
 //POST /admin/products-category/create
 module.exports.createPost = async (req, res) => {
+  // if(!res.locals.role.permissions.includes("products-category_create")) {
+  //   res.send("Không có quyền truy cập.");
+  //   return;
+  // }
+
   if (req.body.position == "") {
     const countCategories = await ProductCategory.countDocuments();
     req.body.position = countCategories + 1;
