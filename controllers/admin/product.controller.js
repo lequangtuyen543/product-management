@@ -12,7 +12,6 @@ const createTreeHelper = require('../../helpers/createTree');
 
 //GET /admin/products
 module.exports.index = async (req, res) => {
-  // console.log(req.query.status);
   const filterStatus = filterStatusHelper(req.query);
 
   let find = {
@@ -85,7 +84,6 @@ module.exports.index = async (req, res) => {
 
 //PATCH /admin/products/change-status/:status/:id
 module.exports.changeStatus = async (req, res) => {
-  console.log(req.params);
   const id = req.params.id;
   const status = req.params.status;
 
@@ -245,9 +243,9 @@ module.exports.editPatch = async (req, res) => {
   req.body.stock = parseInt(req.body.stock);
   req.body.position = parseInt(req.body.position);
 
-  if (req.file) {
-    req.body.thumbnail = `/uploads/${req.file.filename}`;
-  }
+  // if (req.file) {
+  //   req.body.thumbnail = `/uploads/${req.file.filename}`;
+  // }
 
   try {
     const updatedBy = {
@@ -276,8 +274,6 @@ module.exports.detail = async (req, res) => {
     };
 
     const product = await Product.findOne(find);
-
-    console.log(product);
 
     res.render('admin/pages/products/detail', {
       pageTitle: product.title,

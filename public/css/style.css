@@ -1,3 +1,4 @@
+/* Header */
 .header {
   border-bottom: 1px solid #ddd;
   padding: 10px 0;
@@ -10,8 +11,8 @@
 
 .header .inner-menu>ul {
   list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -22,12 +23,17 @@
   margin-left: 20px;
 }
 
+/* End Header */
+
+/* Footer */
 .footer {
-  background-color: #333;
+  background: #333;
   color: #fff;
-  padding: 10px;
   text-align: center;
+  padding: 10px;
 }
+
+/* End Footer */
 
 .box-head {
   margin-bottom: 30px;
@@ -148,3 +154,65 @@
 }
 
 /* end sub-menu  */
+
+/* product-detail */
+.product-detail .inner-thumb img {
+  width: 100%;
+  height: auto;
+}
+
+.product-detail .inner-title {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.product-detail .inner-category {
+  margin-bottom: 10px;
+}
+
+.product-detail .inner-price-new {
+  color: green;
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.product-detail .inner-price-old {
+  color: red;
+  font-weight: 600;
+  font-size: 20px;
+  text-decoration: line-through;
+  margin-bottom: 10px;
+}
+
+.product-detail .inner-percent {
+  margin-bottom: 10px;
+}
+
+.product-detail .inner-percent span {
+  color: #fff;
+  background: red;
+  font-weight: 600;
+  display: inline-block;
+  padding: 3px 6px;
+  border-radius: 8px;
+}
+
+.product-detail .inner-stock {
+  margin-bottom: 10px;
+}
+
+.product-detail .inner-stock span {
+  color: #fff;
+  background: green;
+  font-weight: 600;
+  display: inline-block;
+  padding: 3px 6px;
+  border-radius: 8px;
+}
+
+.product-detail .inner-desc img {
+  max-width: 100%;
+}
+
+/* End product-detail */
