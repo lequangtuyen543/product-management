@@ -3,8 +3,6 @@ include ../../mixins/box-head.pug
 include ../../mixins/alert.pug
 
 block main
-  +alert-success()
-  +alert-error()
 
   .container.my-3
     .row
@@ -45,7 +43,7 @@ block main
                       value=item.quantity
                       min="1"
                       max=item.productInfo.stock
-                      item-id=item.product_id
+                      product-id=item.product_id
                       style="width: 60px"
                     )
                   td #{item.totalPrice}$
@@ -62,3 +60,5 @@ block main
     else
       p Chưa có sản phẩm nào trong giỏ hàng.
       a(href="/products" class="btn btn-warning") Mua sắm ngay
+
+  script(src="/js/cart.js") 

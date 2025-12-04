@@ -70,3 +70,38 @@ module.exports.addPost = async (req, res) => {
 
   res.redirect(req.get("Referer") || "/");
 }
+
+// [GET] /cart/delete/:productId
+module.exports.delete = async (req, res) => {
+  cartId = req.cookies.cartId;
+  const productId = req.params.productId;
+
+  await Cart.updateOne({
+    _id: cartId
+  }, {
+    $pull: { products: { product_id: productId } }
+  });
+
+  req.flash('success', 'Đã xóa sản phẩm khỏi giỏ hàng');
+  res.redirect(req.get("Referer") || "/");
+}
+
+// [GET] /cart/update/:productId/:quantity
+module.exports.update = async (req, res) => {
+  const cartId = req.cookies.cartId;
+  const productId = req.params.productId;
+  const quantity = req.params.quantity;
+
+  await Cart.updateOne({
+    _id: cartId,
+    "products.product_id": productId
+  }, {
+    $set: {
+      "products.$.quantity": quantity
+    }
+  })
+
+  req.flash('success', 'Đã cập nhật số lượng sản phẩm trong giỏ hàng');
+
+  res.redirect(req.get("Referer") || "/");
+}
