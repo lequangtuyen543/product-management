@@ -28,15 +28,17 @@ header.header
 
       .col-4
         .inner-menu 
-          ul             
+          ul            
             li  
-              a(href="/") Home  
+              a(href="/admin/dashboard") Admin      
             li  
-              a(href="/admin/dashboard") Admin       
+              a(href="/") Home     
             li.sub-menu
               -const pathProduct = "products"
               a(href=pathProduct) Products     
                 +sub-menu(layoutProductsCategory, pathProduct)
             li  
               a(href="/cart") Cart (#{miniCart ? miniCart.totalQuantity : 0})
+            li 
+              a(href="/user/register") Register
             
