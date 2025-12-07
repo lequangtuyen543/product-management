@@ -69,14 +69,14 @@ Click để xem toàn bộ quá trình phát triển (rất đầy đủ):
 <details>
   <summary><strong>📜 Lịch sử commit đầy đủ (Click để mở)</strong></summary>
 
-Tạo project
-Cấu hình folder controllers
-Cấu hình .env
-Cấu trúc lại folder PUG
-Nhúng Bootstrap 4 – Nhúng file tĩnh
-Sửa layout
-Insert Data
-Cài đặt Mongoose
+- Tạo project
+- Cấu hình folder controllers
+- Cấu hình .env
+- Cấu trúc lại folder PUG
+- Nhúng Bootstrap 4 – Nhúng file tĩnh
+- Sửa layout
+- Insert Data
+- Cài đặt Mongoose
 
 ### 👉 Làm trang sản phẩm client
 
