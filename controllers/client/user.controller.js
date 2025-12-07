@@ -15,7 +15,7 @@ module.exports.registerPost = async (req, res) => {
     email: req.body.email
   })
 
-  if(existEmail){
+  if (existEmail) {
     req.flash('error', 'email exist');
     res.redirect(req.get("Referer") || "/");
     return;
@@ -27,6 +27,45 @@ module.exports.registerPost = async (req, res) => {
   await user.save()
 
   res.cookie('tokenUser', user.tokenUser)
-  
-  res.redirect(req.get("Referer") || "/");
+
+  res.redirect("/");
+}
+
+// [GET] /user/login
+module.exports.login = async (req, res) => {
+  res.render('client/pages/user/login', {
+    pageTitle: 'Login'
+  })
+}
+
+// [POST] /user/login
+module.exports.loginPost = async (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  const user = await User.findOne({
+    email: email,
+    deleted: false
+  })
+
+  if (!user) {
+    req.flash('error', 'email not exist')
+    res.redirect(req.get("Referer") || "/");
+    return;
+  }
+
+  if (md5(password) !== user.password) {
+    req.flash('error', 'password not correct')
+    res.redirect(req.get("Referer") || "/");
+    return;
+  }
+
+  if (user.status === 'inactive') {
+    req.flash('error', 'status not active')
+    res.redirect(req.get("Referer") || "/");
+    return;
+  }
+
+  res.cookie('tokenUser', user.tokenUser)
+  res.redirect('/')
 }
