@@ -49,16 +49,15 @@ Dự án bao gồm đầy đủ các tính năng từ CRUD sản phẩm, danh m�
 ## 📂 Cấu trúc dự án
 
 ```txt
+config/
 controllers/
+helpers/
+middlewares/
 models/
-views/
-  ├── layouts/
-  ├── products/
-  ├── categories/
-  ├── accounts/
 public/
 routes/
-config/
+validates/
+views/
 ```
 
 ---
