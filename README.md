@@ -1,172 +1,208 @@
-dự án quản lý sản phẩm được code theo hướng server side rendering sử dụng MongoDB + Express + Pug + Boostrap + Nodejs
+# 📦 Product Management System
+
+**Một dự án quản lý sản phẩm theo hướng Server-Side Rendering (SSR)**
+Công nghệ sử dụng: **MongoDB + Express + Pug + Bootstrap + Node.js**
+
+Dự án bao gồm đầy đủ các tính năng từ CRUD sản phẩm, danh mục, phân quyền, tài khoản, giỏ hàng, đặt hàng, cho đến realtime chat.
+
+---
+
+## 🚀 Công nghệ sử dụng
+
+* **Node.js** – Backend chính
+* **Express.js** – Xử lý routing & middleware
+* **MongoDB / Mongoose** – Lưu trữ & quản lý dữ liệu
+* **Pug** – Templating engine SSR
+* **Bootstrap 4** – Giao diện & UI
+* **Cloud storage** – Upload file tĩnh
+* **TinyMCE** – Rich text editor
+
+---
+
+## ✨ Tính năng chính
+
+### 🛒 **Client**
+
+* Danh sách sản phẩm có phân trang, lọc, tìm kiếm
+* Trang chi tiết sản phẩm
+* Hiển thị sản phẩm nổi bật / mới nhất
+* Giỏ hàng, cập nhật số lượng, xóa
+* Đặt hàng, lưu thông tin
+* Đăng ký / đăng nhập / quên mật khẩu
+* Hiển thị thông tin cá nhân
+* Mini cart trên header
+* Realtime chat
+
+### 🔧 **Admin**
+
+* Quản lý sản phẩm (CRUD, upload ảnh, sắp xếp thứ tự, trạng thái…)
+* Quản lý danh mục
+* Quản lý vai trò (roles) & phân quyền
+* Quản lý tài khoản
+* Dashboard thống kê
+* Logs: createdBy / deletedBy / updatedBy
+* Cài đặt chung website
+* Chat realtime với user
+
+---
+
+## 📂 Cấu trúc dự án
+
+```txt
+controllers/
+models/
+views/
+  ├── layouts/
+  ├── products/
+  ├── categories/
+  ├── accounts/
+public/
+routes/
+config/
+```
+
+---
+
+## 📝 Lịch sử phát triển dự án
+
+Click để xem toàn bộ quá trình phát triển (rất đầy đủ):
 
 <details>
-  <summary>Lịch sử commit</summary>
+  <summary><strong>📜 Lịch sử commit đầy đủ (Click để mở)</strong></summary>
 
 Tạo project
 Cấu hình folder controllers
 Cấu hình .env
 Cấu trúc lại folder PUG
-Nhúng Bootstrap 4 - Nhúng file tĩnh
+Nhúng Bootstrap 4 – Nhúng file tĩnh
 Sửa layout
 Insert Data
 Cài đặt Mongoose
-Làm trang danh sách sản phẩm bên Client
-1.1. Tạo trang tổng quan
-1.2. Xây dựng layout chung
-1.3. Làm giao diện danh sách sản phẩm
-Thêm ghi chú cho controller
-2. Lấy data sản phẩm in ra giao diện
-3. Tính năng lọc theo trạng thái
-4. Tính năng tìm kiếm (Phần 1)
-4. Tính năng tìm kiếm (Phần 2)
-"1.1. Tối ưu phần Bộ lọc
-"
-"1.2. Tối ưu phần Tìm kiếm
-"
-Insert Data 2
-2. Tính năng phân trang
-2. Tính năng phân trang (Tối ưu)
-3.1. Thay đổi trạng thái một sản phẩm
-"3.2. Thay đổi trạng thái nhiều sản phẩm
-"
-"4.1. Xóa vĩnh viễn
-"
-"4.2. Xóa mềm
-"
-"1. Tính năng xóa nhiều sản phẩm
-"
-"2. Tính năng thay đổi thứ tự sản phẩm
-"
-"3.1. Hiển thị thông báo sau khi đổi trạng thái
-"
-"3.2. Hiển thị thông báo sau khi xóa
-"
-"3.3. Hiển thị thông báo sau khi đổi vị trí
-"
-"4. Tính năng tạo mới sản phẩm
-"
-4. Tính năng tạo mới sản phẩm (Upload ảnh)
-4. Tính năng tạo mới sản phẩm (tiếp)
-"1. Validate dữ liệu
-"
-"2. Tính năng chỉnh sửa sản phẩm
-"
-3. Làm trang chi tiết sản phẩm bên admin
-4. Làm trang chi tiết sản phẩm bên client
-"5.1. MongoDB Atlas
-"
-Config deploy online
-"6. Đẩy file tĩnh lên Cloud
-"
-"1. Sắp xếp sản phẩm theo
-các tiêu chí khác nhau
-"
-"2. TinyMCE
-"
-3. Xây dựng phần quản lý danh mục sản phẩm (Phần 1)
-"3. Xây dựng phần quản lý
-danh mục sản phẩm (Phần 2)"
-Fix lỗi số thứ tự
-Upload ảnh
-1. Tính năng chỉnh sửa danh mục sản phẩm
-"2.1. Phần thêm mới sản phẩm
-"
-"2.2. Phần chỉnh sửa sản phẩm
-"
-3.1. Tạo collection roles
-3.2 và 3.3. Xây dựng phần Danh sách nhóm quyền + Thêm mới nhóm quyền
-"3.4. Xây dựng phần Chỉnh sửa nhóm quyền
-"
-4. Xây dựng phần Phân quyền
-4. Xây dựng phần Phân quyền (tiếp)
-1. Xây dựng phần Danh sách tài khoản
-"2. Làm tính năng đăng nhập
-"
-"3. Làm tính năng đăng xuất
-"
-4. Thêm middleware cho route private
-1. Thêm authorization - views
-1. Thêm authorization - server
-2. Thêm logs createdBy
-2. Thêm logs deletedBy
-2. Thêm logs updatedBy
-1. Làm trang Thông tin cá nhân bên admin
-2. Hiển thị menu chung bên client
-"3. Thêm phần sản phẩm nổi bật bên admin
-"
-"4.1. Hiển thị danh sách sản phẩm nổi bật
-"
-"4.2. Hiển thị danh sách sản phẩm mới nhất
-"
-"5. Trang danh sách sản phẩm bên client
-"
-5. Trang danh sách sản phẩm bên client (Lấy cả các sản phẩm ở danh mục con)
-"6. Trang chi tiết sản phẩm bên client
-"
-"1. Trang kết quả tìm kiếm
-"
-"2.1. Thêm sản phẩm vào giỏ hàng
-"
-"2.2. Làm nút Mini Cart trên Header
-"
-"2.3. Làm trang giỏ hàng
-"
-Button Go Back
-"2.4. Xóa sản phẩm trong giỏ hàng
-"
-2.5. Cập nhật số lượng sản phẩm trong giỏ hàng
-"1.1. Tạo collection và model
-"
-"1.2. Làm giao diện
-"
-"1.3. Lấy data được gửi lên lưu vào database
-"
-"1.4. Làm trang đặt hàng thành công
-"
-"2.1. Tạo collection users
-"
-"2.2. Đăng ký tài khoản
-"
-"2.3. Đăng nhập
-"
-2.4. Đăng xuất
-3. Quên mật khẩu
-3. Quên mật khẩu Phần 2
-"1. Hiển thị thông tin user bên client
-"
-2. Lưu thêm user_id vào collection carts
-"3. Phần Cài đặt chung bên admin
-"
-"4. Trang Dashboard bên admin
-"
-"5. Làm trang 404
-"
-"3. Làm giao diện chat cho Project
-"
-"4.1. Cài đặt
-"
-"4.2. Tối ưu source code
-"
-"5.1. Tạo collection chats
-"
-"5.2. Làm tính năng chat cơ bản
-"
-"5.3. Hiển thị data realtime
-"
+
+### 👉 Làm trang sản phẩm client
+
+* Tạo trang tổng quan
+* Layout chung
+* Danh sách sản phẩm
+* Lọc theo trạng thái
+* Tìm kiếm (Phần 1 & 2)
+* Tối ưu bộ lọc
+* Tối ưu tìm kiếm
+
+### 👉 Phân trang
+
+* Thêm phân trang
+* Tối ưu phân trang
+
+### 👉 CRUD sản phẩm
+
+* Thay đổi trạng thái (1 sản phẩm & nhiều sản phẩm)
+* Xóa mềm & xóa vĩnh viễn
+* Xóa nhiều sản phẩm
+* Thay đổi thứ tự sản phẩm
+* Thông báo sau khi đổi trạng thái / xóa / đổi vị trí
+* Tạo mới sản phẩm
+* Upload ảnh sản phẩm
+* Validate dữ liệu
+* Chỉnh sửa sản phẩm
+* Trang chi tiết sản phẩm (admin & client)
+
+### 👉 Cấu hình DevOps
+
+* MongoDB Atlas
+* Deploy online
+* Upload file tĩnh lên Cloud
+
+### 👉 Tính năng nâng cao
+
+* Sắp xếp sản phẩm theo nhiều tiêu chí
+* TinyMCE Editor
+
+### 👉 Quản lý danh mục
+
+* Xây dựng phần quản lý (Phần 1 & 2)
+* Fix lỗi số thứ tự
+* Upload ảnh
+* Chỉnh sửa danh mục
+
+### 👉 Quản lý roles & phân quyền
+
+* Tạo collection roles
+* Danh sách + thêm mới nhóm quyền
+* Chỉnh sửa nhóm quyền
+* Thực hiện phân quyền (2 phần)
+
+### 👉 Quản lý tài khoản
+
+* Danh sách tài khoản
+* Đăng nhập, đăng xuất
+* Middleware bảo vệ route
+* Authorization (views + server)
+* Logs: createdBy / deletedBy / updatedBy
+
+### 👉 Client – User Features
+
+* Trang thông tin cá nhân
+* Menu chung client
+* Sản phẩm nổi bật
+* Sản phẩm mới nhất
+* Danh sách + chi tiết sản phẩm client
+* Kết quả tìm kiếm
+
+### 👉 Giỏ hàng & đặt hàng
+
+* Thêm vào giỏ
+* Mini cart header
+* Trang giỏ hàng
+* Xóa sản phẩm
+* Cập nhật số lượng
+* Tạo collection + model
+* Giao diện
+* Lưu vào database
+* Trang đặt hàng thành công
+
+### 👉 User auth nâng cao
+
+* Collection users
+* Đăng ký
+* Đăng nhập
+* Đăng xuất
+* Quên mật khẩu (2 phần)
+* Hiển thị thông tin user
+* Lưu thêm user_id vào carts
+
+### 👉 Admin system
+
+* Cài đặt chung
+* Dashboard
+* Trang 404
+
+### 👉 Chat realtime
+
+* Giao diện chat
+* Cài đặt
+* Tối ưu source code
+* Tạo collection chats
+* Tính năng chat cơ bản
+* Hiển thị realtime
+* Fix chat scroll bottom
+* Icon, Typing
+
+### 👉 Upload nhiều ảnh
+
+* Chèn nhiều ảnh (3 phần)
+* Hiển thị ảnh Full
+
+### 👉 User list
+
+* Hiển thị danh sách user
+* Phân tích chức năng (Phần 1)
+
 Fix /admin
-Fix chat scroll bottom
-"1.1. Chèn icon
-"
-"1.2. Typing
-"
-1.3. Chèn nhiều ảnh (Phần 1)
-1.3. Chèn nhiều ảnh (Phần 2)
-1.3. Chèn nhiều ảnh (Phần 3)
-Show Full Image
-"1.1. Hiển thị danh sách user
-"
-1.2. Phân tích chức năng (Phần 1)
 
 </details>
 
+---
+
+## 📧 Liên hệ
+Email: lequangtuyen543@gmail.com
