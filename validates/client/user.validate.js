@@ -45,3 +45,25 @@ module.exports.forgotPasswordPost = (req, res, next) => {
 
   next();
 }
+
+module.exports.resetPasswordPost = (req, res, next) => {
+  if (!req.body.password) {
+    req.flash('error', `Please enter password`);
+    res.redirect(req.get("Referer") || "/");
+    return;
+  }
+
+  if (!req.body.confirmPassword) {
+    req.flash('error', `Please enter confirmPassword`);
+    res.redirect(req.get("Referer") || "/");
+    return;
+  }
+
+  if (req.body.password != req.body.confirmPassword) {
+    req.flash('error', `password not match`);
+    res.redirect(req.get("Referer") || "/");
+    return;
+  }
+
+  next();
+}

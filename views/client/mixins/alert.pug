@@ -1,4 +1,4 @@
-mixin alert-success(time)
+mixin alert-success(time=2000)
   - if (messages.success)
     .message.info
       div.alert.alert-success(
@@ -6,7 +6,7 @@ mixin alert-success(time)
         data-time=time
       ) #{messages.success} <span close-alert>x</span>   
 
-mixin alert-error(time)
+mixin alert-error(time=2000)
   - if (messages.error)
     .message.info
       div.alert.alert-danger(
