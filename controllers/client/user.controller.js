@@ -70,7 +70,6 @@ module.exports.loginPost = async (req, res) => {
     return;
   }
 
-  // console.log 
   await Cart.updateOne({
     _id: req.cookies.cartId
   }, {
