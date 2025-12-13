@@ -22,6 +22,7 @@
 .header .inner-menu>ul>li {
   margin-left: 20px;
 }
+
 /* End Header */
 
 /* Footer */
@@ -31,6 +32,7 @@
   text-align: center;
   padding: 10px;
 }
+
 /* End Footer */
 
 /* box-head */
@@ -44,6 +46,7 @@
   font-weight: 600;
   color: green;
 }
+
 /* End box-head */
 
 /* product-item  */
@@ -241,17 +244,19 @@
     display: none;
   }
 }
+
 [show-alert] [close-alert] {
   background: #fff;
   display: inline-block;
   width: 24px;
   height: 24px;
   line-height: 24px;
-  text-align: center;  
+  text-align: center;
   font-weight: 600;
   border-radius: 50%;
   cursor: pointer;
 }
+
 /* End Show Alert */
 
 /* chat */
@@ -379,4 +384,17 @@
   width: 90px;
   background-size: contain;
 }
+
 /* End chat */
+
+/* Emoji Icon  */
+.tooltip {
+  visibility: hidden;
+}
+
+.tooltip.shown {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* End Emoji Icon  */
