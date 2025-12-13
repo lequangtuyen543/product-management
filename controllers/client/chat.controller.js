@@ -23,6 +23,16 @@ module.exports.index = async (req, res) => {
         content: content
       })
     })
+
+    // Typing
+    socket.on('CLIENT_SEND_TYPING', async (type) => {
+      socket.broadcast.emit('SERVER_RETURN_TYPING', {
+        userId: userId,
+        fullName: fullName,
+        type: type  
+      })
+    })
+    // End Typing
   });
   //End Socket IO
 
@@ -31,7 +41,7 @@ module.exports.index = async (req, res) => {
     deleted: false
   })
 
-  for(const chat of chats){
+  for (const chat of chats) {
     const infoUser = await User.findOne({
       _id: chat.user_id
     }).select('fullName')
