@@ -1,0 +1,32 @@
+bài 21
+● Tự làm trang xem chi tiết danh mục sản phẩm.
+● Tự làm tính năng xóa danh mục sản phẩm.
+● Tự làm trang xem chi tiết nhóm quyền.
+● Tự làm tính năng xóa nhóm quyền.
+
+bài 22
+● Tự làm phần đổi trạng thái tài khoản.
+● Tự làm phần xem chi tiết tài khoản.
+● Tự làm tính năng xóa tài khoản.
+
+bài 23
+● Tự làm phần chỉnh sửa Danh mục sản phẩm sẽ lưu được logs thông tin người sửa.
+● Tự làm phần chỉnh sửa Nhóm quyền sẽ lưu được logs thông tin người sửa.
+● Làm thêm phần Quản lý danh mục bài viết (Tương tự Quản lý danh mục sản phẩm).
+● Làm thêm phần Quản lý bài viết (Tương tự Quản lý sản phẩm).
+
+bài 24
+● Làm trang Danh sách bài viết bên client (Tương tự Danh sách sản phẩm bên client).
+● Làm trang Chi tiết bài viết bên client (Tương tự Chi tiết sản phẩm bên client).
+
+bài 26
+● Tự làm phần Quản lý đơn hang bên admin.
+● Thêm phần phân quyền cho mục Quản lý đơn hang.
+
+bài 27 
+● Từ data user đã có, in data ra giao diện Thông tin user.
+● Thêm phần phân quyền cho mục Cài đặt chung.
+● Làm trang sửa thông tin user bên client.
+● Làm trang đổi mật khẩu bên client.
+● Làm phần Quản lý user bên admin (Tương tự phần Quản lý tài khoản).
+● Thêm phần phân quyền cho mục Quản lý user bên admin.
