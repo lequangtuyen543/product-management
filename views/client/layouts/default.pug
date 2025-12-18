@@ -9,6 +9,9 @@ html
     link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />  
 
+    //- file upload-with-preview
+    link(rel="stylesheet", href="https://unpkg.com/file-upload-with-preview/dist/style.css")
+
     link(rel="stylesheet", href="/css/style.css")
   
   body     
@@ -26,13 +29,15 @@ html
     script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js")
     script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")
 
-    // Socket IO
+    // emoji-picker
+    script(type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js")
+
+    // file upload-with-preview
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/file-upload-with-preview/6.1.2/index.iife.js")
+
+    // Socket
     script(src="/socket.io/socket.io.js")
     script(src="/js/socket.js")
-
-    // emoji-picker-element
-    script(type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js") 
-    // End emoji-picker-element
 
     script(type='module' src="/js/chat.js") 
 

@@ -1,15 +1,29 @@
 import * as Popper from 'https://cdn.jsdelivr.net/npm/@popperjs/core@^2/dist/esm/index.js'
 
+// FileUploadWithPreview
+const upload = new FileUploadWithPreview.FileUploadWithPreview("upload-image", {
+  multiple: true,
+  maxFileCount: 6,
+});
+// End FileUploadWithPreview
+
 // CLIENT_SEND_MASSAGE
 const formSendData = document.querySelector('.chat .inner-form');
 if (formSendData) {
   formSendData.addEventListener('submit', (e) => {
     e.preventDefault();
     const content = e.target.elements.content.value;
-    if (content) {
-      socket.emit('CLIENT_SEND_MASSAGE', content);
-      e.target.elements.content.value = "";
-      socket.emit('CLIENT_SEND_TYPING', 'hidden');
+    const images = upload.cachedFileArray;
+
+    if (content || images.length > 0) {
+      // Gửi content hoặc ảnh lên server
+      socket.emit("CLIENT_SEND_MESSAGE", {
+        content: content,
+        images: images,
+      });
+      e.target[0].value = "";
+      upload.resetPreviewPanel();
+      socket.emit("CLIENT_SEND_TYPING", "hidden");
     }
   })
 }
@@ -22,6 +36,8 @@ socket.on('SERVER_RETURN_MESSAGE', (data) => {
 
   const div = document.createElement('div');
   let htmlFullName = ''
+  let htmlContent = ''
+  let htmlImages = ''
 
   if (myId == data.userId) {
     div.classList.add('inner-outgoing')
@@ -30,9 +46,26 @@ socket.on('SERVER_RETURN_MESSAGE', (data) => {
     div.classList.add('inner-incoming')
   }
 
+  if (data.content) {
+    htmlContent = `
+      <div class="inner-content">${data.content}</div>
+    `
+  }
+
+  if (data.images.length > 0) {
+    htmlImages += `<div class="inner-images">`
+
+    for (const image of data.images) {
+      htmlImages += `<img src="${image}">`
+    }
+
+    htmlImages += `</div>`
+  }
+
   div.innerHTML = `
     ${htmlFullName}
-    <div class="inner-content">${data.content}</div>
+    ${htmlContent}
+    ${htmlImages}    
   `;
 
   body.appendChild(div);
