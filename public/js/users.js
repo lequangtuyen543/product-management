@@ -73,10 +73,11 @@ if (badgeUsersAccept) {
 // End SERVER_RETURN_LENGTH_ACCEPT_FRIEND
 
 // SERVER_RETURN_INFO_ACCEPT_FRIEND
-const dataUsersAccept = document.querySelector('[data-users-accept]');
+const dataUsersAccept = document.querySelector("[data-users-accept]");
 if (dataUsersAccept) {
-  const userId = dataUsersAccept.getAttribute('data-users-accept')
+  const userId = dataUsersAccept.getAttribute("data-users-accept");
   socket.on('SERVER_RETURN_INFO_ACCEPT_FRIEND', (data) => {
+    console.log(data)
     if (userId === data.userId) {
       // Vẽ user ra giao diện      
       const div = document.createElement("div");
@@ -117,3 +118,17 @@ if (dataUsersAccept) {
   })
 }
 // End SERVER_RETURN_INFO_ACCEPT_FRIEND
+
+// SERVER_RETURN_USER_ID_CANCEL_FRIEND 
+socket.on('SERVER_RETURN_USER_ID_CANCEL_FRIEND', (data) => {
+  const userIdA = data.userIdA
+  const boxUserRemove = document.querySelector(`[user-id='${userIdA}']`)
+  if (boxUserRemove) {
+    const dataUsersAccept = document.querySelector("[data-users-accept]");
+    const userIdB = badgeUsersAccept.getAttribute('badge-users-accept')
+    if (userIdB === data.userIdB) {
+      dataUsersAccept.removeChild(boxUserRemove)
+    }
+  }
+})
+// End SERVER_RETURN_USER_ID_CANCEL_FRIEND 
