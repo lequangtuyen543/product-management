@@ -9,13 +9,15 @@ Dự án bao gồm đầy đủ các tính năng từ CRUD sản phẩm, danh m�
 
 ## 🚀 Công nghệ sử dụng
 
-* **Node.js** – Backend chính
-* **Express.js** – Xử lý routing & middleware
-* **MongoDB / Mongoose** – Lưu trữ & quản lý dữ liệu
-* **Pug** – Templating engine SSR
-* **Bootstrap 4** – Giao diện & UI
-* **Cloud storage** – Upload file tĩnh
-* **TinyMCE** – Rich text editor
+* **Node.js** – Backend, NPM, Module, Nodemon
+* **Express.js** – Router, Middleware, MVC
+* **MongoDB & Mongoose** – Database, Schema, Validate
+* **Pug** – Server-side rendering
+* **Bootstrap 4** – Giao diện Admin & Client
+* **CKEditor** – Soạn thảo nội dung
+* **Socket.IO** – Realtime chat
+* **Cloud Storage** – Upload ảnh & avatar
+* **JWT / Session** – Xác thực & phân quyền
 
 ---
 
@@ -23,181 +25,191 @@ Dự án bao gồm đầy đủ các tính năng từ CRUD sản phẩm, danh m�
 
 ### 🛒 **Client**
 
-* Danh sách sản phẩm có phân trang, lọc, tìm kiếm
+* Danh sách sản phẩm (phân trang, lọc, tìm kiếm)
 * Trang chi tiết sản phẩm
-* Hiển thị sản phẩm nổi bật / mới nhất
-* Giỏ hàng, cập nhật số lượng, xóa
-* Đặt hàng, lưu thông tin
+* Sản phẩm nổi bật & mới nhất
+* Bài viết: nổi bật, mới nhất, theo danh mục
+* Giỏ hàng & đặt hàng
 * Đăng ký / đăng nhập / quên mật khẩu
-* Hiển thị thông tin cá nhân
-* Mini cart trên header
-* Realtime chat
-
-### 🔧 **Admin**
-
-* Quản lý sản phẩm (CRUD, upload ảnh, sắp xếp thứ tự, trạng thái…)
-* Quản lý danh mục
-* Quản lý vai trò (roles) & phân quyền
-* Quản lý tài khoản
-* Dashboard thống kê
-* Logs: createdBy / deletedBy / updatedBy
-* Cài đặt chung website
-* Chat realtime với user
+* Thông tin cá nhân người dùng
+* Chat realtime & trạng thái online
 
 ---
 
-## 📂 Cấu trúc dự án
+### 🔧 **Admin**
 
-```txt
-config/
-controllers/
-helpers/
-middlewares/
-models/
-public/
-routes/
-validates/
-views/
-```
+* Quản lý sản phẩm (CRUD, upload ảnh, trạng thái, sắp xếp)
+* Quản lý danh mục & bài viết (CKEditor)
+* Quản lý người dùng, avatar
+* Quản lý roles & phân quyền
+* Dashboard, trang 404, cài đặt website
+* Logs: `createdBy` / `updatedBy` / `deletedBy`
+* Chat realtime, phòng chat, kết bạn
 
 ---
 
 ## 📝 Lịch sử phát triển dự án
 
-Click để xem toàn bộ quá trình phát triển (rất đầy đủ):
-
 <details>
-  <summary><strong>📜 Lịch sử commit đầy đủ (Click để mở)</strong></summary>
+  <summary><strong>📜 Lịch sử commit chi tiết (Click để mở)</strong></summary>
 
-- Tạo project
-- Cấu hình folder controllers
-- Cấu hình .env
-- Cấu trúc lại folder PUG
-- Nhúng Bootstrap 4 – Nhúng file tĩnh
-- Sửa layout
-- Insert Data
-- Cài đặt Mongoose
+---
 
-### 👉 Làm trang sản phẩm client
+### 📘 Bài 14: NPM, NodeJS, Express (Tiết 1)
 
-* Tạo trang tổng quan
-* Layout chung
-* Danh sách sản phẩm
-* Lọc theo trạng thái
-* Tìm kiếm (Phần 1 & 2)
-* Tối ưu bộ lọc
-* Tối ưu tìm kiếm
+* Khởi tạo project NodeJS với NPM
+* Cấu trúc project NodeJS cơ bản
+* Làm quen Module, Nodemon, Routing
+* Khởi tạo Express App (Express Generator)
+* Cấu trúc Express: Router, View, Controller
 
-### 👉 Phân trang
+---
 
-* Thêm phân trang
-* Tối ưu phân trang
+### 📘 Bài 15: NodeJS, Express, MongoDB, Mongoose (Tiết 2)
 
-### 👉 CRUD sản phẩm
+* Nhúng giao diện (5 template)
+* Cấu hình Router + Prefix `/admin`
+* Xây dựng trang 404 Error
+* Cài đặt MongoDB & Mongoose
+* Xây dựng trang quản lý sản phẩm (cơ bản)
+* Hiển thị danh sách sản phẩm
 
-* Thay đổi trạng thái (1 sản phẩm & nhiều sản phẩm)
-* Xóa mềm & xóa vĩnh viễn
+---
+
+### 📘 Bài 16: NodeJS, Express, MongoDB, Mongoose (Tiết 3)
+
+* Lọc danh sách sản phẩm theo trạng thái
+* Tìm kiếm sản phẩm
+* Phân trang danh sách sản phẩm
+
+---
+
+### 📘 Bài 17: NodeJS, Express, MongoDB, Mongoose (Tiết 4)
+
+* Thay đổi trạng thái 1 sản phẩm
+* Xóa sản phẩm (soft delete)
+* Thay đổi trạng thái nhiều sản phẩm
+
+---
+
+### 📘 Bài 18: NodeJS, Express, MongoDB, Mongoose (Tiết 5)
+
 * Xóa nhiều sản phẩm
-* Thay đổi thứ tự sản phẩm
-* Thông báo sau khi đổi trạng thái / xóa / đổi vị trí
-* Tạo mới sản phẩm
-* Upload ảnh sản phẩm
-* Validate dữ liệu
+* Thay đổi trạng thái đơn hàng
+* Hiển thị thông báo (status, delete, update)
+* Thêm mới sản phẩm
+* Validate dữ liệu sản phẩm
+
+---
+
+### 📘 Bài 19: NodeJS, Express, MongoDB, Mongoose (Tiết 6)
+
 * Chỉnh sửa sản phẩm
-* Trang chi tiết sản phẩm (admin & client)
+* Tối ưu cấu trúc source code
+* Deploy project chạy thực tế
 
-### 👉 Cấu hình DevOps
+---
 
-* MongoDB Atlas
-* Deploy online
-* Upload file tĩnh lên Cloud
+### 📘 Bài 20: NodeJS, Express, MongoDB, Mongoose (Tiết 7)
 
-### 👉 Tính năng nâng cao
-
+* Xây dựng trang quản lý sản phẩm nâng cao
+* Lưu thông tin chi tiết sản phẩm
 * Sắp xếp sản phẩm theo nhiều tiêu chí
-* TinyMCE Editor
+* Tích hợp CKEditor cho nội dung sản phẩm
 
-### 👉 Quản lý danh mục
+---
 
-* Xây dựng phần quản lý (Phần 1 & 2)
-* Fix lỗi số thứ tự
-* Upload ảnh
-* Chỉnh sửa danh mục
+### 📘 Bài 21: NodeJS, Express, MongoDB, Mongoose (Tiết 8)
 
-### 👉 Quản lý roles & phân quyền
+* Xây dựng quản lý nhóm người dùng (Roles)
+* Quản lý tài khoản người dùng
+* Phân quyền hệ thống
+* Tối ưu code Back-end
 
-* Tạo collection roles
-* Danh sách + thêm mới nhóm quyền
-* Chỉnh sửa nhóm quyền
-* Thực hiện phân quyền (2 phần)
+---
 
-### 👉 Quản lý tài khoản
+### 📘 Bài 22: NodeJS, Express, MongoDB, Mongoose (Tiết 9)
 
-* Danh sách tài khoản
-* Đăng nhập, đăng xuất
-* Middleware bảo vệ route
-* Authorization (views + server)
-* Logs: createdBy / deletedBy / updatedBy
+* Quản lý danh mục sản phẩm
+* Upload hình ảnh danh mục
+* Upload avatar người dùng
 
-### 👉 Client – User Features
+---
 
-* Trang thông tin cá nhân
-* Menu chung client
-* Sản phẩm nổi bật
-* Sản phẩm mới nhất
-* Danh sách + chi tiết sản phẩm client
-* Kết quả tìm kiếm
+### 📘 Bài 23: NodeJS, Express, MongoDB, Mongoose (Tiết 10)
 
-### 👉 Giỏ hàng & đặt hàng
+* Hoàn thiện upload avatar
+* Validate dữ liệu nâng cao
+* Xây dựng quản lý bài viết
+* Xây dựng giao diện Front-end
 
-* Thêm vào giỏ
-* Mini cart header
-* Trang giỏ hàng
-* Xóa sản phẩm
-* Cập nhật số lượng
-* Tạo collection + model
-* Giao diện
-* Lưu vào database
-* Trang đặt hàng thành công
+---
 
-### 👉 User auth nâng cao
+### 📘 Bài 24: NodeJS, Express, MongoDB, Mongoose (Tiết 11)
 
-* Collection users
-* Đăng ký
-* Đăng nhập
-* Đăng xuất
-* Quên mật khẩu (2 phần)
-* Hiển thị thông tin user
-* Lưu thêm user_id vào carts
+* Hiển thị bài viết nổi bật
+* Hiển thị bài viết mới nhất
+* Hiển thị bài viết theo danh mục
+* Xây dựng layout tổng thể website
+* Trang chi tiết bài viết
 
-### 👉 Admin system
+---
 
-* Cài đặt chung
-* Dashboard
-* Trang 404
+### 📘 Bài 25: NodeJS, Express, MongoDB, Mongoose (Tiết 12)
 
-### 👉 Chat realtime
+* Hoàn thiện trang chi tiết bài viết
+* Đăng nhập trang quản trị
+* Phân quyền Admin
+* Tối ưu Back-end
 
-* Giao diện chat
-* Cài đặt
-* Tối ưu source code
-* Tạo collection chats
-* Tính năng chat cơ bản
-* Hiển thị realtime
-* Fix chat scroll bottom
-* Icon, Typing
+---
 
-### 👉 Upload nhiều ảnh
+### 📘 Bài 26: NodeJS, Express, MongoDB, Mongoose (Tiết 13)
 
-* Chèn nhiều ảnh (3 phần)
-* Hiển thị ảnh Full
+* Tối ưu Front-end
+* Deploy project production
 
-### 👉 User list
+---
 
-* Hiển thị danh sách user
-* Phân tích chức năng (Phần 1)
+### 📘 Bài 27: Socket.IO (Tiết 01)
 
-Fix /admin
+* Tổng quan Socket.IO
+* Tích hợp Socket.IO với NodeJS
+* Emit & Listen sự kiện
+* Xây dựng hệ thống chat realtime
+* Đăng nhập / đăng xuất chat
+
+---
+
+### 📘 Bài 28: Socket.IO (Tiết 02)
+
+* Chat realtime cơ bản & nâng cao
+* Hiển thị người dùng online
+
+---
+
+### 📘 Bài 29: Socket.IO (Tiết 03)
+
+* Tối ưu code Socket.IO
+* Quản lý phòng chat
+* Truy cập phòng chat
+* Chat theo từng phòng
+
+---
+
+### 📘 Bài 30: Socket.IO (Tiết 04)
+
+* Hoàn thiện chat theo phòng
+* Chức năng kết bạn cơ bản & nâng cao
+
+---
+
+### 📘 Bài 31: Socket.IO (Tiết 05)
+
+* Hoàn thiện chức năng kết bạn
+* Tối ưu toàn bộ source code
+
+---
 
 </details>
 
