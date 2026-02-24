@@ -214,6 +214,17 @@ Dự án bao gồm đầy đủ các tính năng từ CRUD sản phẩm, danh m�
 </details>
 
 ---
+## 👤 Tài khoản demo
+
+```txt
+Email: levana@gmail.com
+Password: 1
+```
+```txt
+Email: levanb@gmail.com
+Password: 1
+```
+---
 
 ## 📧 Liên hệ
 Email: lequangtuyen543@gmail.com
